@@ -24,9 +24,8 @@ public class Main {
     }
 
     public static void convertToPdf() throws Exception {
-        String home = "/Users/takayamatetsuya/Study/svg/svg-to-pdf/";
-        String svgFilePath = home + "src/main/resources/radarchart.svg";
-        String outputFilePath = home + "output/radarchart.pdf";
+        String svgFilePath = "src/main/resources/radarchart.svg";
+        String outputFilePath = "output/radarchart.pdf";
 
         try (InputStream in = new FileInputStream(svgFilePath);
                 OutputStream out = new FileOutputStream(outputFilePath)) {
