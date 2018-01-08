@@ -1,0 +1,8 @@
+build
+bin
+.gradle
+.classpath
+.settings
+.project
+output/*.pdf
+.DS_Store

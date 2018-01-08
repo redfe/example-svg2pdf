@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C/DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="400px" height="400px" viewBox="0 0 400 400">
+
+    <defs>
+        <style type="text/css"><![CDATA[
+          #hexsagon {
+              fill: none;
+              stroke: #ddd;
+          }
+          .chart-score10 {
+              stroke-width: 1;
+          }
+          .chart-score8 {
+              stroke-width: 1.25;
+          }
+          .chart-score6 {
+              stroke-width: 1.67;
+          }
+          .chart-score4 {
+              stroke-width: 2.5;
+          }
+          .chart-score2 {
+              stroke-width: 5;
+          }
+          .chart {
+            stroke-width: 1pt;
+            fill-opacity: 0.5;
+          }
+          .sub {
+            fill:#f90;
+            stroke: #f90;
+          }
+          .main {
+            fill:#09f;
+            stroke: #09f;
+          }
+          .chart-guideline {
+            stroke: #ddd;
+            fill: none;
+            stroke-dasharray: 4, 4;
+          }
+          .score-scale {
+            font-size: 7pt;
+            fill: #555;
+          }
+          .score-title {
+            font-size: 9pt;
+            text-anchor: middle;
+          }
+          .score-circle {
+            fill-opacity: 0.2;
+            stroke-width: 1pt;
+          }
+          .score-text {
+            text-anchor: middle;
+          }
+          @font-face {
+            font-family: XANO-mincho-U32;
+            src: url("font/XANO-U32-2004-0509/XANO-mincho-U32.ttf");
+          }
+          text {
+            font-family: XANO-mincho-U32;
+          }
+        ]]></style>
+        <g id="hexsagon">
+            <!--半径をAとすると中心点のX軸は (√3/2)*A となる-->
+            <!--中心点を (100, 100) とすると、x の最小値は 13.4, x の最大値は 186.6-->
+            <path d="M 100 0, 186.6 50, 186.6 150, 100 200, 13.4 150, 13.4 50 Z"/>
+        </g>
+    </defs>
+    <svg x="100" y="100">
+        <!--2ポイント単位の六角形-->
+        <use class="chart-score10" xlink:href="#hexsagon"/>
+        <use class="chart-score8" transform="translate(20, 20), scale(0.8)" xlink:href="#hexsagon"/>
+        <use class="chart-score6" transform="translate(40, 40), scale(0.6)" xlink:href="#hexsagon"/>
+        <use class="chart-score4" transform="translate(60, 60), scale(0.4)" xlink:href="#hexsagon"/>
+        <use class="chart-score2" transform="translate(80, 80), scale(0.2)" xlink:href="#hexsagon"/>
+        <!--ガイドラインを引く-->
+        <path d="M 100 100 L 100 0" class="chart-guideline"/>
+        <path d="M 100 100 L 186.6 50" class="chart-guideline"/>
+        <path d="M 100 100 L 186.6 150" class="chart-guideline"/>
+        <path d="M 100 100 L 100 200" class="chart-guideline"/>
+        <path d="M 100 100 L 13.4 150" class="chart-guideline"/>
+        <path d="M 100 100 L 13.4 50" class="chart-guideline"/>
+        <!--チャートを表示する-->
+        <!--例 pt は 5 4 5 6 7 3-->
+        <!--[1] X=cx, Y=cy-pv [pv=R*(5/10)]             → X=100,    Y=50-->
+        <!--[2] X=cx+(√3*pv/2), Y=cy-pv/2 [pv=R*(4/10)] → X=134.64, Y=80-->
+        <!--[3] X=cx+(√3*pv/2), Y=cy+pv/2 [pv=R*(5/10)] → X=143.30, Y=125-->
+        <!--[4] X=cx, Y=cy+pv [pv=R*(6/10)]             → X=100,    Y=160-->
+        <!--[5] X=cx-(√3*pv/2), Y=cy+pv/2 [pv=R*(7/10)] → X=39.38,  Y=135-->
+        <!--[6] X=cx-(√3*pv/2), Y=cy-pv/2 [pv=R*(3/10)] → X=74.02,  Y=85-->
+        <path d="M 100 50,
+                                134.64 80,
+                                143.30 125,
+                                100 160,
+                                39.38 135,
+                                74.02 85 Z" class="chart sub"/>
+        <!--チャートを表示する-->
+        <!--例 pt は 8 7 3 5 4 6-->
+        <!--[1] X=cx, Y=cy-pv [pv=R*(8/10)]             → X=100,    Y=20-->
+        <!--[2] X=cx+(√3*pv/2), Y=cy-pv/2 [pv=R*(7/10)] → X=160.62, Y=65-->
+        <!--[3] X=cx+(√3*pv/2), Y=cy+pv/2 [pv=R*(3/10)] → X=125.98, Y=115-->
+        <!--[4] X=cx, Y=cy+pv [pv=R*(5/10)]             → X=100,    Y=150-->
+        <!--[5] X=cx-(√3*pv/2), Y=cy+pv/2 [pv=R*(4/10)] → X=65.36,  Y=120-->
+        <!--[6] X=cx-(√3*pv/2), Y=cy-pv/2 [pv=R*(6/10)] → X=48.04,  Y=70-->
+        <path d="M 100 20,
+                                160.62 65,
+                                125.98 115,
+                                100 150,
+                                65.36 120,
+                                48.04 70 Z" class="chart main"/>
+    </svg>
+
+    <!-- チャートの目盛 -->
+    <svg x="200" y="80">
+        <text y="20" class="score-scale">
+            10
+        </text>
+        <text y="40" class="score-scale">
+            8
+        </text>
+        <text y="60" class="score-scale">
+            6
+        </text>
+        <text y="80" class="score-scale">
+            4
+        </text>
+        <text y="100" class="score-scale">
+            2
+        </text>
+        <text y="120" class="score-scale">
+            0
+        </text>
+    </svg>
+
+    <!-- 各項目のタイトル -->
+    <text id="title1" class="score-title" x="200" y="25">
+        あいうえお<tspan x="200" dy="1.5em">かきくけこ</tspan>
+    </text>
+    <circle class="score-circle main" cx="200" cy="70" r="15" />
+    <text class="score-text main" x="200" y="70" dy="0.35em">8</text>
+
+    <text class="score-title" x="310" y="100">
+        あいうえお<tspan x="310" dy="1.5em">かきくけこ</tspan>
+    </text>
+    <circle class="score-circle main" cx="310" cy="140" r="15" />
+    <text class="score-text main" x="310" y="140" dy="0.35em">7</text>
+
+    <text class="score-title" x="310" y="290">
+        あいうえお<tspan x="310" dy="1.5em">かきくけこ</tspan>
+    </text>
+    <circle class="score-circle main" cx="310" cy="260" r="15" />
+    <text class="score-text main" x="310" y="260" dy="0.35em">3</text>
+
+    <text class="score-title" x="200" y="355">
+        あいうえお<tspan x="200" dy="1.5em">かきくけこ</tspan>
+    </text>
+    <circle class="score-circle main" cx="200" cy="325" r="15" />
+    <text class="score-text main" x="200" y="325" dy="0.35em">5</text>
+
+    <text class="score-title" x="90" y="290">
+        あいうえお<tspan x="90" dy="1.5em">かきくけこ</tspan>
+    </text>
+    <circle class="score-circle main" cx="90" cy="260" r="15" />
+    <text class="score-text main" x="90" y="260" dy="0.35em">4</text>
+
+    <text class="score-title" x="90" y="100">
+        あいうえお<tspan x="90" dy="1.5em">かきくけこ</tspan>
+    </text>
+    <circle class="score-circle main" cx="90" cy="140" r="15" />
+    <text class="score-text main" x="90" y="140" dy="0.35em">6</text>
+
+</svg>
